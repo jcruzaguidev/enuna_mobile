@@ -1,12 +1,12 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../../utils/colors";
+import { COLORS } from '../../constants';
 
 export const styles = StyleSheet.create({
    menuTop: {
       flex: 1,
    },
    container: {
-      backgroundColor: colors.purple,
+      backgroundColor: COLORS.purple,
    },
    imageBackground: {
       padding: 20,
@@ -18,23 +18,23 @@ export const styles = StyleSheet.create({
       marginBottom: 10,
    },
    primaryText: {
-      color: '#fff',
+      color: COLORS.white,
       fontSize: 18,
       marginBottom: 5,
    },
    secondaryText: {
-      color: '#fff',
+      color: COLORS.white,
       marginRight: 5,
    },
    menuOptions: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: COLORS.white,
       paddingTop: 10,
    },
    menuBottom: {
       padding: 20,
       borderTopWidth: 1,
-      borderTopColor: '#ccc',
+      borderTopColor: COLORS.white2,
    },
    sectionBottom: {
       paddingVertical: 15,
@@ -50,7 +50,7 @@ export const styles = StyleSheet.create({
    textBottomRed: {
       fontSize: 15,
       marginLeft: 5,
-      color: colors.red
+      color: COLORS.red
    },
 });
 

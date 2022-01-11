@@ -4,7 +4,7 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import {CustomDrawer} from '../components';
 import {HomeStack, SettingsStack} from './stack';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {colors} from '../utils/colors';
+import { COLORS, SIZES } from '../constants';
 
 const Drawer = createDrawerNavigator();
 
@@ -15,12 +15,12 @@ const Navigations = () => {
             drawerContent={(props) => <CustomDrawer {...props} />}
             screenOptions={{
                headerShown: false,
-               drawerActiveBackgroundColor: colors.purple,
-               drawerActiveTintColor: '#fff',
-               drawerInactiveTintColor: colors.gray200,
+               drawerActiveBackgroundColor: COLORS.purple,
+               drawerActiveTintColor: COLORS.white,
+               drawerInactiveTintColor: COLORS.gray200,
                drawerLabelStyle: {
                   marginLeft: -25,
-                  fontSize: 15,
+                  fontSize: SIZES.body3,
                },
             }}
             initialRouteName="home-stack"
@@ -32,7 +32,7 @@ const Navigations = () => {
                   title: 'Inicio',
                   headerShown: false,
                   drawerIcon: ({ color }) => (
-                     <Ionicons name="home-outline" size={22} color={color} />
+                     <Ionicons name="home-outline" size={ SIZES.body2 } color={color} />
                   ),
                }}
             />
@@ -43,7 +43,7 @@ const Navigations = () => {
                   title: 'Configuración',
                   headerShown: false,
                   drawerIcon: ({ color }) => (
-                     <Ionicons name="person-outline" size={22} color={color} />
+                     <Ionicons name="person-outline" size={ SIZES.body2 } color={color} />
                   ),
                }}
             />
