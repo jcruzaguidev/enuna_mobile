@@ -13,9 +13,10 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { styles } from './CustomDrawer.styles';
-import { COLORS, SIZES, images } from '../../constants';
+import { COLORS, SIZES } from '../../constants';
 
 const CustomDrawer = (props: any) => {
+
    return (
       <>
          <View style={styles.menuTop}>
@@ -24,11 +25,11 @@ const CustomDrawer = (props: any) => {
                contentContainerStyle={styles.container}
             >
                <ImageBackground
-                  source={require(images.menuBackground)}
+                  source={require('../../../assets/img/menu-bg.jpeg')}
                   style={styles.imageBackground}
                >
                   <Image
-                     source={require(images.userProfile)}
+                     source={require('../../../assets/img/user-profile.jpg')}
                      style={styles.imageUser}
                   />
                   <Text style={styles.primaryText}>Jorge Cruz</Text>

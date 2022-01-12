@@ -3,6 +3,6 @@ import SettingsStack from "./SettingsStack";
 
 export {
    HomeStack,
-   SettingsStack
+   SettingsStack,
 }
 

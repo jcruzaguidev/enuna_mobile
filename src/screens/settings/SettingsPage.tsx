@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import {HeaderComponent} from '../../components';
-import {colors} from '../../utils/colors';
+import { COLORS } from '../../constants';
 
 const SettingsPage = () => {
 
@@ -19,14 +19,14 @@ const SettingsPage = () => {
 const styles = StyleSheet.create({
    safeArea:{
       flex:1,
-      backgroundColor:"#fff"
+      backgroundColor:COLORS.white
    },
    scrollBox:{
       padding:20
    },
    inputBox: {
       flexDirection: 'row',
-      borderColor: colors.gray300,
+      borderColor: COLORS.gray300,
       borderWidth: 1,
       borderRadius: 8,
       paddingHorizontal: 10,

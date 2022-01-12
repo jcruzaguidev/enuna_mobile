@@ -1,15 +1,17 @@
 import React, {useEffect, useState} from 'react';
-import { View, StyleSheet, TextInput, SafeAreaView, ScrollView, Text } from 'react-native';
+import { View, StyleSheet, TextInput, SafeAreaView, ScrollView, FlatList } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
-import {HeaderComponent} from '../../components';
+import {Alert, CategoryCard, HeaderComponent} from '../../components';
 import {CategoryData} from '../../interfaces/master.interface';
 import {MasterServices} from '../../services/masterServices';
 import { COLORS, SIZES } from '../../constants';
+import TrendingSection from './TrendingSection';
 
-const HomePage = () => {
+const HomePage = ({ navigation }:any) => {
    const { category } = MasterServices();
    const [search, setSearch] = useState("");
    const [categoryList, setCategoryList] = useState<CategoryData[]>([]);
+   let img = "../../../assets/recipes/laksa.png";
 
    const handleSchenge = (e:any) => {
       setSearch(e);
@@ -39,11 +41,31 @@ const HomePage = () => {
                   <TextInput placeholder="Buscar comercio" onChangeText={ e => handleSchenge(e) } value={ search } />
                </View>
                <View>
-                  {
-                     categoryList.map(category => (
-                        <Text key={ category.categoryKey }>{ category.categoryName }</Text>
-                     ))
-                  }
+                  <FlatList 
+                     data={ categoryList }
+                     keyExtractor={ item => `${ item.categoryKey }` }
+                     keyboardDismissMode="on-drag"
+                     showsVerticalScrollIndicator={ false }
+                     ListHeaderComponent={
+                        <Alert />
+                     }
+                     renderItem={({ item }) => {
+                        return (
+                           <CategoryCard
+                              item={item}
+                              image={img}
+                              onPress={() => navigation.navigate("settings-stack", { cattegoryKey:item.categoryKey })}
+                           />
+                        );
+                     }}
+                     ListFooterComponent={
+                        <View 
+                           style={{
+                              marginBottom:100
+                           }}
+                        />
+                     }
+                  />
                </View>
             </ScrollView>
          </SafeAreaView>
