@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, FlatList} from 'react-native';
 import { FONTS, SIZES, dummyData } from '../../constants';
+import TrendingCard from './TrendingCard';
 
 const TrendingSection = () => {
 
@@ -23,11 +24,11 @@ const TrendingSection = () => {
                data={ dummyData.trendingRecipes }
                horizontal
                showsHorizontalScrollIndicator={false}
-               keyExtractor={item => `${item}`}
+               keyExtractor={item => `${item.id}`}
                renderItem={({ item, index }) => {
                   return (
                      <View key={ index }>
-                        <Text>{ item.name }</Text>
+                        <TrendingCard item={ item } onPress={() => {}} />
                      </View>
                   )
                }}

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { View, StyleSheet, TextInput, SafeAreaView, ScrollView, FlatList } from 'react-native';
+import { View, StyleSheet, TextInput, SafeAreaView, FlatList } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import {Alert, CategoryCard, HeaderComponent} from '../../components';
 import {CategoryData} from '../../interfaces/master.interface';
@@ -22,52 +22,54 @@ const HomePage = ({ navigation }:any) => {
       (async () => {
          await category().then(res => {
             res.status === "success" && setCategoryList(res.data);
-         })
+         }).catch(error => console.log(error));
       })();
    }, []);
+
 
    return (
       <>
          <SafeAreaView style={ styles.safeArea }>
-            <ScrollView style={ styles.scrollBox }>
-               <HeaderComponent title="Inicio" />
-               <View style={ styles.inputBox }>
-                  <Feather 
-                     name='search'
-                     size={ SIZES.body2 }
-                     color={ COLORS.gray300 }
-                     style={{ marginRight:5 }}
-                  />
-                  <TextInput placeholder="Buscar comercio" onChangeText={ e => handleSchenge(e) } value={ search } />
-               </View>
-               <View>
-                  <FlatList 
-                     data={ categoryList }
-                     keyExtractor={ item => `${ item.categoryKey }` }
-                     keyboardDismissMode="on-drag"
-                     showsVerticalScrollIndicator={ false }
-                     ListHeaderComponent={
-                        <Alert />
-                     }
-                     renderItem={({ item }) => {
-                        return (
-                           <CategoryCard
-                              item={item}
-                              image={img}
-                              onPress={() => navigation.navigate("settings-stack", { cattegoryKey:item.categoryKey })}
+            <View style={ styles.scrollBox }>
+               <FlatList 
+                  data={ categoryList }
+                  keyExtractor={ item => `${ item.categoryKey }` }
+                  keyboardDismissMode="on-drag"
+                  showsVerticalScrollIndicator={ false }
+                  ListHeaderComponent={
+                     <>
+                        <HeaderComponent title="Inicio" />
+                        <View style={ styles.inputBox }>
+                           <Feather 
+                              name='search'
+                              size={ SIZES.body2 }
+                              color={ COLORS.gray300 }
+                              style={{ marginRight:5 }}
                            />
-                        );
-                     }}
-                     ListFooterComponent={
-                        <View 
-                           style={{
-                              marginBottom:100
-                           }}
+                           <TextInput placeholder="Buscar comercio" onChangeText={ e => handleSchenge(e) } value={ search } />
+                        </View>
+                        <Alert />
+                        <TrendingSection />
+                     </>
+                  }
+                  renderItem={({ item }) => {
+                     return (
+                        <CategoryCard
+                           item={item}
+                           image={img}
+                           onPress={() => navigation.navigate("settings-stack", { cattegoryKey:item.categoryKey })}
                         />
-                     }
-                  />
-               </View>
-            </ScrollView>
+                     );
+                  }}
+                  ListFooterComponent={
+                     <View 
+                        style={{
+                           marginBottom:100
+                        }}
+                     />
+                  }
+               />
+            </View>
          </SafeAreaView>
       </>
    );

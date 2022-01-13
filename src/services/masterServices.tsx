@@ -9,13 +9,11 @@ export const MasterServices = () => {
       return result;
    }
 
-
    const commerce = async (districtKey:string, categoryKey:string, term:string) => {
       const { data } = await api.get(`/commerce/${districtKey}/${categoryKey}/${term}`);
       const result:Commerce = data;
       return result;
    }
-
 
    return {
       category,
